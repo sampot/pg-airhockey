@@ -1,0 +1,196 @@
+:root {
+  color-scheme: light dark;
+  --bg: #e8f1f4;
+  --panel: #ffffff;
+  --text: #0f1c24;
+  --muted: #5a6f7a;
+  --line: #c5d6de;
+  --accent: #0e7490;
+  --on-accent: #f0fdff;
+  --ok: #15803d;
+  --warn: #b45309;
+  --bad: #dc2626;
+  --tap: 48px;
+  --radius: 0.85rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #071016;
+    --panel: #101a20;
+    --text: #e7f0f5;
+    --muted: #8fa6b3;
+    --line: #24333c;
+    --accent: #22d3ee;
+    --on-accent: #042f38;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --bad: #f87171;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ambiance {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(700px 400px at 80% -10%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 55%),
+    radial-gradient(500px 300px at 0% 100%, color-mix(in oklab, #38bdf8 12%, transparent), transparent 50%),
+    var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: "Avenir Next", "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+main {
+  width: min(100%, 26rem);
+  margin: 0 auto;
+  padding: 0.8rem 0.7rem max(1rem, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hero {
+  text-align: center;
+}
+.eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero h1 {
+  margin: 0.1rem 0 0;
+  font-size: clamp(1.65rem, 5vw, 2rem);
+  letter-spacing: 0.12em;
+}
+.tagline {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.meter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.meter-item {
+  flex: 1 1 4.5rem;
+  min-height: var(--tap);
+  padding: 0.3rem 0.45rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.meter-item .label {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.meter-item strong {
+  font-size: 1.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.controls button,
+button {
+  min-height: var(--tap);
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.4rem 0.85rem;
+  flex: 1 1 auto;
+  -webkit-tap-highlight-color: transparent;
+}
+button:not(.secondary) {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+button.secondary {
+  background: color-mix(in oklab, var(--text) 5%, var(--panel));
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.status {
+  margin: 0;
+  text-align: center;
+  min-height: 1.25em;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.status[data-tone="ok"] {
+  color: var(--ok);
+}
+.status[data-tone="warn"] {
+  color: var(--warn);
+}
+.status[data-tone="bad"] {
+  color: var(--bad);
+}
+
+.stage {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+  background: #0b1220;
+  display: flex;
+  justify-content: center;
+}
+#game {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  touch-action: none;
+  cursor: grab;
+}
+#game:active {
+  cursor: grabbing;
+}
+
+.rules {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 90%, transparent);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.rules summary {
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  main {
+    width: min(100%, 32rem);
+  }
+}
