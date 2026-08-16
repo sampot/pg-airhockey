@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="light dark" />
     <meta
       name="description"
-      content="空氣曲棍球：桌面彈盤、球拍拖曳、人機對戰。純前端 Playgrounds SAM，適配手機。"
+      content="空氣曲棍球：桌面彈盤、球拍拖曳／鍵鼠操作、人機對戰。純前端 Playgrounds SAM，適配手機與桌面。"
     />
     <title>空氣曲棍球</title>
     <link rel="stylesheet" href="./styles.css" />
@@ -20,37 +20,48 @@
         <p class="tagline">拖曳球拍 · 彈盤進門 · 先得七分</p>
       </header>
 
-      <section class="meter" aria-label="對局狀態">
-        <div class="meter-item">
-          <span class="label">你</span>
-          <strong id="you">0</strong>
-        </div>
-        <div class="meter-item">
-          <span class="label">AI</span>
-          <strong id="ai">0</strong>
-        </div>
-        <div class="meter-item">
-          <span class="label">最佳得分</span>
-          <strong id="best">0</strong>
-        </div>
-      </section>
+      <div class="top-bar">
+        <section class="meter" aria-label="對局狀態">
+          <div class="meter-item">
+            <span class="label">你</span>
+            <strong id="you">0</strong>
+          </div>
+          <div class="meter-item">
+            <span class="label">AI</span>
+            <strong id="ai">0</strong>
+          </div>
+          <div class="meter-item">
+            <span class="label">最高連勝</span>
+            <strong id="best">0</strong>
+          </div>
+        </section>
 
-      <div class="controls">
-        <button type="button" id="btn-start">開局</button>
-        <button type="button" id="btn-mute" class="secondary" aria-pressed="true">音效</button>
+        <div class="controls">
+          <button type="button" id="btn-start">開局</button>
+          <button type="button" id="btn-mute" class="secondary" aria-pressed="true">音效</button>
+        </div>
       </div>
 
-      <p id="status" class="status" role="status">開局後拖曳球拍</p>
+      <p id="status" class="status" role="status" aria-live="polite">開局後拖曳球拍</p>
 
       <div class="stage">
-        <canvas id="game" width="320" height="520" aria-label="空氣曲棍球桌"></canvas>
+        <canvas
+          id="game"
+          width="320"
+          height="520"
+          tabindex="0"
+          role="img"
+          aria-label="空氣曲棍球桌。開局後拖曳下半部球拍，或用方向鍵與 WASD 移動。"
+        ></canvas>
       </div>
 
       <details class="rules">
         <summary>怎麼玩</summary>
         <ul>
-          <li>開局後在桌面下半部拖曳藍色球拍，把黑盤打進對方球門。</li>
-          <li>守住己方球門；先得到 7 分獲勝。名稱與手感致敬空氣曲棍球類型，非商業復刻。</li>
+          <li>開局後把手指或游標移到桌面下半部，藍色球拍就跟到哪，把黑盤打進對方球門。</li>
+          <li>桌面可用方向鍵或 WASD 移動球拍；開局後舞台可取得鍵盤焦點。</li>
+          <li>守住己方球門；先得到 7 分獲勝。連勝會計入「最高連勝」。</li>
+          <li>名稱與手感致敬空氣曲棍球類型，非商業復刻。</li>
         </ul>
       </details>
     </main>
