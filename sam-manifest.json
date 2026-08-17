@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "rev": "db58ea8",
+  "files": [
+    "app.js",
+    "audio.js",
+    "functions.js",
+    "game.js",
+    "index.html",
+    "styles.css"
+  ]
+}
